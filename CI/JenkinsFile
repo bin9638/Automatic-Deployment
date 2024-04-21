@@ -11,15 +11,10 @@ pipeline {
             steps {
                 sh 'mvn --version'
                 sh 'java -version'
-                sh 'ls -ltr'
-                sh 'ls -la'
-                sh 'cd CI/spring-boot-app'
-                sh 'ls -la'
-                sh 'cd CI'
-                sh 'ls -la'
-                sh 'cd spring-boot-app'
-                sh 'ls -la'
-                sh 'mvn clean package'
+                dir('CI/spring-boot-app')
+                {
+                    sh 'mvn clean package'
+                }
             }
         }
 
