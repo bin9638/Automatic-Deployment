@@ -14,13 +14,13 @@ pipeline {
            
             steps {
                 withCredentials([file(credentialsId: 'ansible_key', variable: 'ansible_key')]) {
-                    sh 'ls -la'
-                    sh "cp /$ansible_key ansible_key"
-                    sh 'cat ansible_key'
-                    sh 'ansible --version'
-                    sh 'ls -la'
-                    sh 'chmod 400 ansible_key '
-                    sh 'ansible-playbook -i hosts --private-key ansible_key playbook.yml'
+                    sh 'sudo ls -la'
+                    sh "sudo cp /$ansible_key ansible_key"
+                    sh 'sudo cat ansible_key'
+                    sh 'sudo ansible --version'
+                    sh 'sudo ls -la'
+                    sh 'sudo chmod 400 ansible_key '
+                    sh 'sudo ansible-playbook -i hosts --private-key ansible_key playbook.yml'
             }
             }
         }
