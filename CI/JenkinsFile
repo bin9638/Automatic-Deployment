@@ -12,6 +12,7 @@ pipeline {
                 sh 'mvn --version'
                 sh 'java -version'
                 sh 'cd CI/spring-boot-app'
+                sh 'ls -la'
                 sh 'mvn clean package'
             }
         }
