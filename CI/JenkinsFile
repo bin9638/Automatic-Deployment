@@ -33,6 +33,7 @@ pipeline {
                     sh 'docker build -t bin9638/springboot .'
                     sh 'docker push bin9638/springboot'*/
                 }
+                sh 'ls -la'
             }
         }
         
