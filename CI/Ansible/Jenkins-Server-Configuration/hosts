@@ -1,0 +1,2 @@
+[host]
+13.236.44.200  ansible_user=ubuntu ansible_ssh_private_key_file=./bin9638.pem
