@@ -3,7 +3,6 @@ pipeline {
 
     tools{
         maven "My-Maven"
-        docker "Docker"
     }
 
     stages {
@@ -24,10 +23,11 @@ pipeline {
 
             steps {
                 sh 'ls -la'
+                sh 'docker --version'
                 dir('CI/spring-boot-app')
                 {
                     sh 'ls -la'
-                    withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                    withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/', toolName: 'Docker') {
                          sh 'docker build -t bin9638/springboot .'
                          sh 'docker push bin9638/springboot'
                     }  
