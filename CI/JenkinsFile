@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    tools{
+        maven "My-Maven"
+    }
+
+    stages {
+
+        stage('Build with Maven') {
+            steps {
+                sh 'mvn --version'
+                sh 'java -version'
+                sh 'cd CI/spring-boot-app'
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Packaging/Pushing imagae') {
+
+            steps {
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                    sh 'cd CI/spring-boot-app'
+                    sh 'docker build -t bin9638/springboot .'
+                    sh 'docker push bin9638/springboot'
+                }
+            }
+        }
+
+        stage('Deploy Spring Boot to DEV') {
+            steps {
+                echo 'Deploying and cleaning'
+                sh 'docker image pull bin9638/springboot'
+                sh 'docker container stop bin9638-springboot || echo "this container does not exist" '
+                sh 'echo y | docker container prune '
+                sh 'docker network create dev || echo "this network exists"'
+                sh 'docker container run -d --rm --name bin9638-springboot -p 8081:8080 --network dev bin9638/springboot'
+            }
+        }
+ 
+    }
+  
+    post {
+        // Clean after build
+        always {
+            cleanWs()
+        }
+    }
+}
