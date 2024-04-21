@@ -23,15 +23,18 @@ pipeline {
 
             steps {
                 sh 'ls -la'
-                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    dir('CI/spring-boot-app')
-                    {
+                dir('CI/spring-boot-app')
+                {
+                    sh 'ls -la'
+                    withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                        {
+                            sh 'docker build -t bin9638/springboot .'
+                            sh 'docker push bin9638/springboot'
+                        }
+                        /*sh 'cd CI/spring-boot-app'
                         sh 'docker build -t bin9638/springboot .'
-                        sh 'docker push bin9638/springboot'
+                        sh 'docker push bin9638/springboot'*/
                     }
-                    /*sh 'cd CI/spring-boot-app'
-                    sh 'docker build -t bin9638/springboot .'
-                    sh 'docker push bin9638/springboot'*/
                 }
                 sh 'ls -la'
             }
