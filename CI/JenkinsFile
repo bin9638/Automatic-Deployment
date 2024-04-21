@@ -27,6 +27,7 @@ pipeline {
                 {
                     sh 'ls -la'
                     script {
+                        sh 'ls -la'
                         sh 'docker build -t bin9638/springboot .'
                         def dockerImage = docker.image("bin9638/springboot")
                         docker.withRegistry('https://index.docker.io/v1/', "dockerhub"){
