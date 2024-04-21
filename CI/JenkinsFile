@@ -11,6 +11,7 @@ pipeline {
             steps {
                 sh 'mvn --version'
                 sh 'java -version'
+                sh 'ls -la'
                 sh 'cd CI/spring-boot-app'
                 sh 'ls -la'
                 sh 'cd CI'
@@ -31,7 +32,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Deploy Spring Boot to DEV') {
             steps {
                 echo 'Deploying and cleaning'
