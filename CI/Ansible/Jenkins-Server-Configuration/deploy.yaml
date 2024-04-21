@@ -1,9 +1,23 @@
-- name: Install Jenkins
+- name: Install Jenkins and Docker
   hosts: host
   become: yes
   become_user: root
   become_method: sudo
   tasks:
+
+    - name: Install Docker dependencies
+      apt:
+        name:
+          - docker.io
+          - python3-pip
+        state: present
+
+    - name: Install Docker Compose
+      pip:
+        name: docker-compose
+        state: present
+        executable: pip3
+
     - name: Update apt cache
       apt:
         update_cache: yes
@@ -53,3 +67,9 @@
         src: /var/lib/jenkins/secrets/initialAdminPassword
         dest: "{{ playbook_dir }}/initialAdminPassword"
         flat: yes
+
+    - name: Add Jenkins to Docker group
+      user:
+        name: jenkins
+        groups: docker
+        append: yes

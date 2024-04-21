@@ -1,10 +1,10 @@
-resource "aws_instance" "JenkinsServer" {
+resource "aws_instance" "QAServer" {
   ami                    = "ami-09c8d5d747253fb7a" # ID của AMI bạn muốn sử dụng
   instance_type          = var.my_instance_type         # Loại instance
   key_name               = var.my_key
   vpc_security_group_ids = [aws_security_group.web-traffic.id]
   tags = {
-    Name = "Jenkins-Server" # Tên của instance
+    Name = "QA-Server" # Tên của instance
   }
   /* provisioner "remote-exec" {
     inline = [

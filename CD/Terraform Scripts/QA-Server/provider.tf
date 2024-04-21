@@ -34,7 +34,7 @@ terraform {
 
   backend "s3" {
     bucket = "project-bin9638"
-    key    = "jenkins/terraform.tfstate"
+    key    = "QA/terraform.tfstate"
     region = "ap-southeast-2"
     // dynamodb_table = "terraform-lock"
   }
