@@ -1,1 +1,1 @@
-![Diagram](https://ibb.co/zx8wmWb)
+![Diagram](https://github.com/bin9638/Automatic-Deployment/blob/main/Diagram.drawio)
