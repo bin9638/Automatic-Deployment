@@ -3,7 +3,7 @@ pipeline {
     agent{
         docker {
             image 'khaliddinh/ansible'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+            args '--user root'
         }
     }
     environment {
