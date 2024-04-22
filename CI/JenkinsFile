@@ -1,6 +1,8 @@
 pipeline {
-    agent any{
-        args '--user root'
+    agent {
+        any{
+            args '--user root'
+        }
     }
 
     tools{
