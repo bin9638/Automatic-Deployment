@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        any{
-            args '--user root'
-        }
-    }
+    agent any
 
     tools{
         maven "My-Maven"
