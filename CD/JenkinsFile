@@ -31,7 +31,7 @@ pipeline {
         
     }
     post {
-        // Clean after build
+        // Clean after buildâs
         always {
             cleanWs()
         }
